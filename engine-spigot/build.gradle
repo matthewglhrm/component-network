@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+archivesBaseName = 'engine-spigot'
+
+dependencies {
+    implementation project(":engine-core")
+
+    compileOnly files("C:/Dependencias/spigot-1.8.8.jar")
+
+    implementation (
+            "org.mongodb:mongodb-driver:3.12.11",
+            'redis.clients:jedis:2.9.0',
+            'org.apache.commons:commons-pool2:2.11.1'
+    )
+}
+
+jar {
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}

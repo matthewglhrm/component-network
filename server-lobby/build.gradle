@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+archivesBaseName = 'server-lobby'
+
+dependencies {
+    implementation project(":engine-core")
+    implementation project(":engine-spigot")
+
+    compileOnly files("C:/Dependencias/spigot-1.8.8.jar")
+
+    implementation (
+            "net.jitse:npclib-plugin:2.7.2-SNAPSHOT",
+            'org.apache.commons:commons-pool2:2.11.1'
+    )
+}
+
+jar {
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
